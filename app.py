@@ -245,12 +245,6 @@ with h1:
         </div>
     </div>
     """, unsafe_allow_html=True)
-with h2:
-    bc1, bc2 = st.columns(2)
-    with bc1:
-        st.button("📥 Export Report")
-    with bc2:
-        st.button("🔗 Share")
 
 
 # ─── KPI CARDS ───────────────────────────────────────────────────────────────
@@ -529,7 +523,6 @@ with t1:
             "total_activity_load": st.column_config.NumberColumn("Total Load", format="%d"),
         },
     )
-    st.button("View All Busy Intervals")
 
 with t2:
     st.markdown('<div class="section-hdr">💤 TOP 10 IDLE PERIODS</div>', unsafe_allow_html=True)
@@ -548,7 +541,6 @@ with t2:
             "idle_streak_length": st.column_config.NumberColumn("Idle Streak", format="%d intervals"),
         },
     )
-    st.button("View All Idle Periods")
 
 
 # ─── ROW 6: EXECUTIVE SUMMARY ────────────────────────────────────────────────
@@ -585,12 +577,3 @@ with es2:
 
 st.markdown("<div style='margin:18px 0 8px'></div>", unsafe_allow_html=True)
 
-# ─── DOWNLOAD ────────────────────────────────────────────────────────────────
-csv = filtered_df.to_csv(index=False)
-st.download_button(
-    "📥 Download Filtered Data",
-    csv,
-    file_name="filtered_ferry_data.csv",
-    mime="text/csv",
-    use_container_width=False,
-)
