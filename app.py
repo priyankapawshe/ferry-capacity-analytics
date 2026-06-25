@@ -353,44 +353,36 @@ day_labels = {
 
 heat.columns = [day_labels.get(c, c) for c in heat.columns]
 
-fig2 = go.Figure(
-    go.Heatmap(
-        z=heat.values,
-        x=heat.columns.tolist(),
-        y=[f"{h:02d}:00" for h in heat.index],
-        colorscale=[
-            [0.0, "#0d1b2e"],
-            [0.3, "#312e81"],
-            [0.6, "#b45309"],
-            [0.85, "#ea580c"],
-            [1.0, "#fbbf24"]
-        ],
-        hovertemplate=
-        "Day: %{x}<br>Hour: %{y}<br>Utilization: %{z:.3f}<extra></extra>",
-        colorbar=dict(
-            title=dict(
-                text="Utilization %",
-                font=dict(color=TEXT_COL, size=11)
-            ),
-            tickfont=dict(
-                color=TEXT_COL,
-                size=9
-            ),
-            bgcolor=CARD_BG,
-            bordercolor=GRID_COL
-        )
-    )
+fig2 = go.Figure(go.Heatmap(
+    z=heat.values,
+    x=heat.columns.tolist(),
+    y=[f"{h:02d}:00" for h in heat.index],
+    colorscale=[
+        [0, "#0d1b2e"],
+        [0.3, "#312e81"],
+        [0.6, "#b45309"],
+        [0.85, "#ea580c"],
+        [1, "#fbbf24"]
+    ],
+    showscale=True,
+    colorbar=dict(
+        title="Utilization %"
+    ),
+    hovertemplate="Day: %{x}<br>Hour: %{y}<br>Utilization: %{z:.3f}<extra></extra>"
+))
+
+fig2.update_layout(**base_layout(370))
+
+fig2.update_xaxes(
+    showgrid=False,
+    tickfont=dict(color=TEXT_COL)
 )
 
-fig2.update_layout(
-    **base_layout(370),
-    yaxis=dict(
-        autorange="reversed",
-        gridcolor=GRID_COL,
-        tickfont=dict(size=9)
-    )
+fig2.update_yaxes(
+    autorange="reversed",
+    gridcolor=GRID_COL,
+    tickfont=dict(color=TEXT_COL)
 )
-
 st.plotly_chart(
     fig2,
     use_container_width=True,
