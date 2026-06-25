@@ -373,10 +373,7 @@ with right:
         hovertemplate="Day: %{x}<br>Hour: %{y}<br>Utilization: %{z:.3f}<extra></extra>"
     ))
 
-    fig2.update_layout(
-        **base_layout(370),
-        margin=dict(l=20, r=20, t=20, b=20)
-    )
+    fig2.update_layout(**base_layout(370))
 
     fig2.update_xaxes(
         showgrid=False,
