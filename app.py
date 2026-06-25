@@ -485,37 +485,29 @@ if kpi_peak > 120:
 if kpi_idle > 20:
     alerts.append(("#38bdf8", "🔵 Idle Capacity Opportunity",
                    f"Idle periods account for {kpi_idle:.1f}% of intervals"))
-
 if not alerts:
-    alerts.append(("#22c55e", "✅ No Active Alerts", "All metrics within normal thresholds"))
-
-for acol, (color, title, body) in zip([al1, al2, al3], (alerts + [None, None, None])[:3]):
-    if alerts and (color := None) is None:
-        pass
-    with acol:
-        if len(alerts) > 0:
-            c, t, b = alerts[0] if acol == al1 else (alerts[1] if acol == al2 and len(alerts) > 1 else (alerts[2] if acol == al3 and len(alerts) > 2 else (None, None, None)))
-            if c:
-                st.markdown(f"""
-                <div class="alert-card" style="--ac:{c}">
-                    <div class="alert-title">{t}</div>
-                    <div class="alert-body">{b}</div>
-                </div>
-                """, unsafe_allow_html=True)
-
-# simpler reliable alert render
+    alerts.append(
+        (
+            "#22c55e",
+            "✅ No Active Alerts",
+            "System operating normally"
+        )
+    )
+# simple reliable render alert 
 st.markdown("")
+
 a_cols = st.columns(min(len(alerts), 3))
+
 for i, (color, title, body) in enumerate(alerts[:3]):
+
     with a_cols[i]:
+
         st.markdown(f"""
         <div class="alert-card" style="--ac:{color}">
             <div class="alert-title">{title}</div>
             <div class="alert-body">{body}</div>
         </div>
         """, unsafe_allow_html=True)
-
-
 # ─── ROW 5: TABLES ───────────────────────────────────────────────────────────
 t1, t2 = st.columns(2)
 
