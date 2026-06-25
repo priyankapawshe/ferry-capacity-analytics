@@ -296,7 +296,7 @@ with left:
     st.markdown('<div class="section-hdr">📈 CAPACITY UTILIZATION OVER TIME</div>', unsafe_allow_html=True)
 
     if granularity == "Hourly":
-        chart_df = filtered_df.set_index("Timestamp").resample("H")["capacity_utilization_ratio"].mean().reset_index()
+        chart_df = filtered_df.set_index("Timestamp").resample("h")["capacity_utilization_ratio"].mean().reset_index()
     elif granularity == "Daily":
         chart_df = filtered_df.set_index("Timestamp").resample("D")["capacity_utilization_ratio"].mean().reset_index()
     else:
