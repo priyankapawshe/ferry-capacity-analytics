@@ -5,7 +5,7 @@ and redemption data from the Jack Layton Ferry Terminal (Toronto Island Ferries)
 built during a Data Science & Analytics internship at Unified Mentor in
 partnership with Toronto Government Parks, Forestry & Recreation.
 
-![image alt]()
+![image alt](Screenshot 2026-06-25 195707.png)
 
 ![image alt]()
 
