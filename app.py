@@ -296,7 +296,7 @@ def base_layout(height=370):
 
 
 # ─── ROW 2: TIMELINE + HEATMAP ───────────────────────────────────────────────
-left, right = st.columns([3, 2])
+left, right = st.columns([2.3, 1.7])
 
 with left:
     st.markdown('<div class="section-hdr">📈 CAPACITY UTILIZATION OVER TIME</div>', unsafe_allow_html=True)
@@ -329,66 +329,70 @@ with left:
     st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
 
 with right:
-   st.markdown(
-    '<div class="section-hdr">🌡️ CONGESTION &amp; IDLE HEATMAP</div>',
-    unsafe_allow_html=True
-)
+    st.markdown(
+        '<div class="section-hdr">🌡️ CONGESTION &amp; IDLE HEATMAP</div>',
+        unsafe_allow_html=True
+    )
 
-heat = filtered_df.pivot_table(
-    index="hour",
-    columns="day_of_week",
-    values="capacity_utilization_ratio",
-    aggfunc="mean"
-)
+    heat = filtered_df.pivot_table(
+        index="hour",
+        columns="day_of_week",
+        values="capacity_utilization_ratio",
+        aggfunc="mean"
+    )
 
-day_labels = {
-    0: "Mon",
-    1: "Tue",
-    2: "Wed",
-    3: "Thu",
-    4: "Fri",
-    5: "Sat",
-    6: "Sun"
-}
+    day_labels = {
+        0: "Mon",
+        1: "Tue",
+        2: "Wed",
+        3: "Thu",
+        4: "Fri",
+        5: "Sat",
+        6: "Sun"
+    }
 
-heat.columns = [day_labels.get(c, c) for c in heat.columns]
+    heat.columns = [day_labels.get(c, c) for c in heat.columns]
 
-fig2 = go.Figure(go.Heatmap(
-    z=heat.values,
-    x=heat.columns.tolist(),
-    y=[f"{h:02d}:00" for h in heat.index],
-    colorscale=[
-        [0, "#0d1b2e"],
-        [0.3, "#312e81"],
-        [0.6, "#b45309"],
-        [0.85, "#ea580c"],
-        [1, "#fbbf24"]
-    ],
-    showscale=True,
-    colorbar=dict(
-        title="Utilization %"
-    ),
-    hovertemplate="Day: %{x}<br>Hour: %{y}<br>Utilization: %{z:.3f}<extra></extra>"
-))
+    fig2 = go.Figure(go.Heatmap(
+        z=heat.values,
+        x=heat.columns.tolist(),
+        y=[f"{h:02d}:00" for h in heat.index],
+        colorscale=[
+            [0, "#0d1b2e"],
+            [0.3, "#312e81"],
+            [0.6, "#b45309"],
+            [0.85, "#ea580c"],
+            [1, "#fbbf24"]
+        ],
+        showscale=True,
+        colorbar=dict(
+            title="Utilization %",
+            thickness=12,
+            len=0.85
+        ),
+        hovertemplate="Day: %{x}<br>Hour: %{y}<br>Utilization: %{z:.3f}<extra></extra>"
+    ))
 
-fig2.update_layout(**base_layout(370))
+    fig2.update_layout(
+        **base_layout(370),
+        margin=dict(l=20, r=20, t=20, b=20)
+    )
 
-fig2.update_xaxes(
-    showgrid=False,
-    tickfont=dict(color=TEXT_COL)
-)
+    fig2.update_xaxes(
+        showgrid=False,
+        tickfont=dict(color=TEXT_COL, size=10)
+    )
 
-fig2.update_yaxes(
-    autorange="reversed",
-    gridcolor=GRID_COL,
-    tickfont=dict(color=TEXT_COL)
-)
-st.plotly_chart(
-    fig2,
-    use_container_width=True,
-    config={"displayModeBar": False}
-)
+    fig2.update_yaxes(
+        autorange="reversed",
+        tickfont=dict(color=TEXT_COL, size=10)
+    )
 
+    st.plotly_chart(
+        fig2,
+        use_container_width=True,
+        config={"displayModeBar": False}
+    )
 # ─── ROW 3: SEASONAL + RADAR ──────────────────────────────────────────────────
 col1, col2 = st.columns(2)
 
