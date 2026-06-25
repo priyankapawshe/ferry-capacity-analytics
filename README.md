@@ -7,7 +7,7 @@ partnership with Toronto Government Parks, Forestry & Recreation.
 
 ## 🔗 Live Dashboard
 
-[View the live Streamlit dashboard](#) <!-- paste your share.streamlit.io link here once deployed -->
+[View the live Streamlit dashboard](#) <!https://fairy-capacity-analytics.streamlit.app/>
 
 ## 📌 Project Overview
 
