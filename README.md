@@ -7,7 +7,7 @@ partnership with Toronto Government Parks, Forestry & Recreation.
 
 ![image alt](https://github.com/priyankapawshe/ferry-capacity-analytics/blob/7b9d9f49a45e32d1e95403bf67c71716f1cf713d/Screenshot%202026-06-25%20195707.png)
 
-![image alt]()
+![image alt](https://github.com/priyankapawshe/ferry-capacity-analytics/blob/60c9ce9c79e08fd47dba758a055f054ac417f549/Screenshot%202026-06-25%20195802.png)
 
 ![image alt]()
 
