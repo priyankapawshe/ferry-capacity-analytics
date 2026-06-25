@@ -1,20 +1,3 @@
- """
-==========================================================
-FERRY CAPACITY PROJECT - STEP 4: STREAMLIT DASHBOARD
-==========================================================
-This is ONE single file containing the whole dashboard.
-It reads the features_15min.csv file you already created
-in Script 2, and turns it into an interactive web app.
-
-IMPORTANT: This does NOT run inside Jupyter Notebook.
-You run it from a terminal with:
-
-    streamlit run app.py
-
-See the bottom of the chat message for full step-by-step
-instructions on how to do that.
-"""
-
 import streamlit as st
 import pandas as pd
 import numpy as np
