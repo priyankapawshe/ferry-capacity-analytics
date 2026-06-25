@@ -19,7 +19,7 @@ st.set_page_config(page_title="Ferry Capacity Dashboard", layout="wide")
 
 @st.cache_data
 def load_data():
-    df = pd.read_csv("fairy_project_feature_engineering.csv")   # <- change path if needed
+    df = pd.read_csv("fairy_project_feature_engineering.csv.gz")   # <- change path if needed
     df["Timestamp"] = pd.to_datetime(df["Timestamp"])
     return df
 
